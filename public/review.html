@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디스코드 국가정보원 감사채널</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 애니메이션 정의 */
+        body {
+            overflow: hidden; /* 스크롤을 숨김 */
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%); /* 시작 위치: 아래 */
+                opacity: 0; /* 시작 투명도 */
+            }
+            to {
+                transform: translateY(0); /* 최종 위치: 원래 위치 */
+                opacity: 1; /* 최종 투명도 */
+            }
+        }
+
+        header, main, footer {
+            animation: slideUp 0.5s ease forwards; /* 애니메이션 속성 */
+            opacity: 0; /* 초기 상태 투명도 */
+            transform: translateY(20px); /* 아래로 위치 조정 */
+        }
+
+        header {
+            animation-delay: 0.1s; /* 헤더 애니메이션 지연 */
+        }
+
+        main {
+            animation-delay: 0.2s; /* 메인 애니메이션 지연 */
+        }
+
+        footer {
+            animation-delay: 0.3s; /* 푸터 애니메이션 지연 */
+        }
+        main {
+            margin-top: 20px; /* 제목과 섹션 간의 간격 */
+            text-align: left; /* 텍스트 왼쪽 정렬 */
+        }
+    </style>
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <h1 id="title-text">NIS:<span style="color: #3d95ec;">국정원</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="NIS.html">기능</a></li> <!-- NIS.html로 링크 수정 -->
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="https://discord.gg/vv7ksc3Kqn">디스코드</a></li>
+                </ul>
+                <!DOCTYPE html>
+                <html lang="ko">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>사용자 후기</title>
+                    <link rel="stylesheet" href="styles.css">
+                </head>
+                <body>
+                    <header>
+                        <h1>사용자 후기</h1>
+                    </header>
+                    
+                    <main>
+                        <div class="feedback-form" style="text-align: left;"> <!-- 왼쪽 정렬 -->
+                            <textarea id="feedback-input" style="width: calc(500px); height: 15px;" placeholder="후기를 입력하세요..." rows="1"></textarea> <!-- 높이를 4px로, 너비를 10px 늘림 -->
+                            <button id="submit-feedback">제출</button>
+                        </div>
+                        <div id="review-list">
+                            <!-- 제출된 후기가 여기에 표시됩니다. -->
+                        </div>
+                    </main>
+                
+                    <footer>
+                        <p>&copy; 2024 NIS:국정원 All rights reserved.</p>
+                    </footer>
+                
+                    <script>
+                        // 후기 가져오기 함수
+                        async function loadFeedback() {
+                            const response = await fetch('/feedback');
+                            const feedbacks = await response.json();
+                            const reviewList = document.getElementById('review-list');
+                
+                            reviewList.innerHTML = ''; // 기존 내용을 비움
+                            feedbacks.forEach(feedback => {
+                                const feedbackItem = document.createElement('div');
+                                feedbackItem.className = 'review-item';
+                                feedbackItem.textContent = feedback;
+                                reviewList.appendChild(feedbackItem);
+                            });
+                        }
+                
+                        // 후기 제출 버튼 이벤트
+                        document.getElementById('submit-feedback').addEventListener('click', async function() {
+                            const feedbackInput = document.getElementById('feedback-input');
+                            const feedbackText = feedbackInput.value;
+                
+                            if (feedbackText) {
+                                await fetch('/feedback', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ feedback: feedbackText }),
+                                });
+                                feedbackInput.value = ''; // 입력 필드 비우기
+                                loadFeedback(); // 후기 목록 다시 로드
+                            }
+                        });
+                
+                        // 페이지 로드 시 후기 목록 로드
+                        window.addEventListener('load', loadFeedback);
+                    </script>
+                </body>
+                </html>

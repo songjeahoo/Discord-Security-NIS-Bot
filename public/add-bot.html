@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디스코드 국가정보원 감사채널</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 애니메이션 정의 */
+        body {
+            overflow: hidden; /* 스크롤을 숨김 */
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%); /* 시작 위치: 아래 */
+                opacity: 0; /* 시작 투명도 */
+            }
+            to {
+                transform: translateY(0); /* 최종 위치: 원래 위치 */
+                opacity: 1; /* 최종 투명도 */
+            }
+        }
+
+        header, main, footer {
+            animation: slideUp 0.5s ease forwards; /* 애니메이션 속성 */
+            opacity: 0; /* 초기 상태 투명도 */
+            transform: translateY(20px); /* 아래로 위치 조정 */
+        }
+
+        header {
+            animation-delay: 0.1s; /* 헤더 애니메이션 지연 */
+        }
+
+        main {
+            animation-delay: 0.2s; /* 메인 애니메이션 지연 */
+        }
+
+        footer {
+            animation-delay: 0.3s; /* 푸터 애니메이션 지연 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 id="title-text">NIS:<span style="color: #3d95ec;">국정원</span></h1>
+        <nav>
+            <ul>
+                <li><a href="NIS.html">기능</a></li> <!-- NIS.html로 링크 수정 -->
+                <li><a href="review.html">사용자 후기</a></li>
+                <li><a href="https://discord.gg/vv7ksc3Kqn">디스코드</a></li>
+            </ul>
+        </nav>
+        <div id="user-info" style="display: none;">
+            <img id="user-avatar" alt="User Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
+            <span id="user-name"></span>
+        </div>
+    </header>
+    <main>
+        <div class="button-container">
+            <a href="https://discord.com/oauth2/authorize?client_id=1297231459987226624&permissions=8&integration_type=0&scope=bot" class="add-bot-button">Add Bot</a>
+        </div>
+        <section id="feedback">
+            <h2>사용자 후기</h2>
+            <div class="feedback-form">
+                <textarea id="feedback-input" placeholder="후기를 입력하세요..."></textarea>
+                <button id="submit-feedback">제출</button>
+            </div>
+            <div class="feedback-list" id="feedback-list">
+                <!-- 제출된 후기가 여기에 표시됩니다. -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 디스코드 국가정보원 감사채널. All rights reserved.</p>
+    </footer>
+
+    <script>
+        async function loadFeedback() {
+            const response = await fetch('/feedback');
+            const feedbacks = await response.json();
+            const feedbackList = document.getElementById('feedback-list');
+
+            feedbackList.innerHTML = ''; // 기존 내용을 비움
+            feedbacks.forEach(feedback => {
+                const feedbackItem = document.createElement('div');
+                feedbackItem.className = 'feedback-item';
+                feedbackItem.textContent = feedback;
+                feedbackList.appendChild(feedbackItem);
+            });
+        }
+
+        document.getElementById('submit-feedback').addEventListener('click', async function() {
+            const feedbackInput = document.getElementById('feedback-input');
+            const feedbackText = feedbackInput.value;
+
+            if (feedbackText) {
+                await fetch('/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ feedback: feedbackText }),
+                });
+
+                feedbackInput.value = ''; // 제출 후 입력 필드 비우기
+                loadFeedback(); // 후기를 다시 로드
+            } else {
+                alert('후기를 입력하세요!');
+            }
+        });
+
+        // 페이지가 로드될 때 기존 후기를 가져옵니다.
+        loadFeedback();
+    </script>
+</body>
+</html>

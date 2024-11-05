@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디스코드 국가정보원 감사채널</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 페이지 전체의 기본 레이아웃 */
+        .header-content {
+            display: flex;
+            justify-content: space-between; /* 좌측 타이틀과 중앙 메뉴 버튼 분리 */
+            align-items: center;
+            padding: 0 20px; /* 좌우 패딩 추가 */
+        }
+        .add-bot-button {
+            padding: 12px 17px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px; /* 버튼 텍스트 크기 조정 */
+            font-weight: bold; /* 버튼 텍스트 두껍게 */
+            border-radius: 10px; /* 버튼 모서리 커브 강도 설정 */
+            transform: translate(-400px, 5px);
+        }
+        /* 상단 섹션 스타일 */
+        main {
+            margin-top: 20px; /* 제목과 섹션 간의 간격 */
+            text-align: left; /* 텍스트 왼쪽 정렬 */
+        }
+        nav {
+            display: flex; /* 플렉스 박스 사용 */
+            justify-content: center; /* 중앙 정렬 */
+            flex-grow: 1; /* 메뉴 버튼이 가능한 공간을 차지하도록 설정 */
+        }
+        nav ul {
+            display: flex; /* 리스트를 가로로 배치 */
+            list-style: none; /* 리스트 스타일 제거 */
+            padding: 0; /* 기본 패딩 제거 */
+            margin: 0; /* 기본 마진 제거 */
+        }
+        nav ul li {
+            margin: 0 15px; /* 메뉴 항목 간의 간격 */
+        }
+        section {
+            margin-bottom: 40px; /* 섹션 간의 간격 */
+            display: none; /* 기본적으로 섹션을 숨김 */
+        }
+        #bot-image {
+            width: 40px; /* 이미지 크기 조정 */
+            height: 40px; /* 이미지 크기 조정 */
+            margin-right: 10px; /* 텍스트와 이미지 간의 간격 */
+        }
+        #title-text {
+            line-height: 50px; /* 타이틀 텍스트 높이 조정 */
+            margin-left: 10px; /* 타이틀 텍스트와 왼쪽 사이 여백 설정 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 id="title-text">NIS:<span style="color: #3d95ec;">국정원</span></h1>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="NIS.html">기능</a></li> <!-- NIS.html로 링크 수정 -->
+                    <li><a href="https://discord.gg/vv7ksc3Kqn">디스코드</a></li>
+                    <li><a href="review.html">사용자후기</a></li>
+                </ul>
+            </nav>
+            <button class="add-bot-button" id="add-bot-button">+ 봇 초대하기</button>
+        </div>
+    </header>
+    
+    <div class="image">
+        <img src="https://i.postimg.cc/Hn1B0CJv/001-6.png" 
+             alt="봇 사용법 이미지" 
+             id="image" 
+             data-x="410" 
+             data-y="80"
+             style="border-radius: 10px; 
+                    opacity: 0;
+                    animation: slide-up 0.5s ease-out forwards;">
+    </div>
+    
+    <style>
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translate(var(--x), var(--y));
+            }
+            to {
+                opacity: 1;
+                transform: translate(var(--x), -0.1px); /* X값은 유지하고, Y값만 최종 위치로 이동 */
+            }
+        }
+    </style>
+    
+    <script>
+        // 이미지 요소 가져오기
+        const manualImage = document.getElementById('image');
+        
+        // data 속성에서 X, Y 값을 가져와 CSS 변수로 설정
+        const x = manualImage.getAttribute('data-x') + 'px';
+        const y = manualImage.getAttribute('data-y') + 'px';
+        
+        // CSS 변수를 설정하여 transform에서 사용할 수 있게 함
+        manualImage.style.setProperty('--x', x);
+        manualImage.style.setProperty('--y', y);
+    </script>
+</header>
+  <header>
+    <div class="manual1">
+        <img src="https://i.ibb.co/9W5pkV1/image.png" alt="봇 사용법 이미지" id="manual1" style="border-radius: 10px; transform: translate(-410px, 20px);">
+    </div>
+    
+    <div class="manual2">
+        <img src="https://i.ibb.co/Xt3rtJC/image.png" alt="봇 사용법 이미지" id="manual2" style="border-radius: 10px; transform: translate(410px, -30px);">
+    </div>  
+    
+    <main>
+        <section id="features">
+            <h2>기능</h2>
+            <ul>
+                <li>누군가 봇을 추가하면 추가한 유저와 봇을 그즉시 추방합니다.</li>
+                <li>봇을 추가한 사람이 봇보다 권한이 높다면 유저는 추방되지 않지만 봇은 그즉시 추방합니다.</li>
+                <li>명령어를 이용해 보안알림(추방로그)이 뜰 채널을 선택가능하며 보안을 끄거나 킬수있습니다.</li>
+            </ul>
+        </section>
+        <section id="feedback">
+            <h2>사용자 후기</h2>
+            <div class="feedback-form">
+                <textarea id="feedback-input" placeholder="후기를 입력하세요..."></textarea>
+                <button id="submit-feedback">제출</button>
+            </div>
+            <div class="feedback-list" id="feedback-list">
+                <!-- 제출된 후기가 여기에 표시됩니다. -->
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 NIS:국정원 All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 후기 가져오기 함수
+        async function loadFeedback() {
+            const response = await fetch('/feedback');
+            const feedbacks = await response.json();
+            const feedbackList = document.getElementById('feedback-list');
+
+            feedbackList.innerHTML = ''; // 기존 내용을 비움
+            feedbacks.forEach(feedback => {
+                const feedbackItem = document.createElement('div');
+                feedbackItem.className = 'feedback-item';
+                feedbackItem.textContent = feedback;
+                feedbackList.appendChild(feedbackItem);
+            });
+        }
+
+        // 후기 제출 버튼 이벤트
+        document.getElementById('submit-feedback').addEventListener('click', async function() {
+            const feedbackInput = document.getElementById('feedback-input');
+            const feedbackText = feedbackInput.value;
+
+            if (feedbackText) {
+                await fetch('/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ feedback: feedbackText }),
+                });
+                feedbackInput.value = ''; // 입력 필드 비우기
+                loadFeedback(); // 후기 목록 다시 로드
+            }
+        });
+
+        // 섹션 표시 토글
+        const toggleSections = document.querySelectorAll('.toggle-section');
+        toggleSections.forEach(toggle => {
+            toggle.addEventListener('click', function(event) {
+                event.preventDefault();
+                const sectionId = this.getAttribute('data-section');
+                const sections = document.querySelectorAll('main section');
+                
+                sections.forEach(section => {
+                    if (section.id === sectionId) {
+                        // 선택한 섹션의 display 상태를 토글
+                        section.style.display = section.style.display === 'none' || section.style.display === '' ? 'block' : 'none';
+                    } else {
+                        section.style.display = 'none'; // 나머지 섹션은 숨김
+                    }
+                });
+            });
+        });
+
+        // 봇 추가하기 버튼 클릭 시 add.html로 이동
+        document.getElementById('add-bot-button').addEventListener('click', function() {
+            window.location.href = 'add-bot.html'; // add.html로 이동
+        });
+
+        // 기능 버튼 클릭 시 NIS.html로 이동
+        document.getElementById('features-button').addEventListener('click', function() {
+            window.location.href = 'NIS.html'; // NIS.html로 이동
+        });
+    </script>
+</body>
+</html>

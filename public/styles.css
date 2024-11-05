@@ -1,0 +1,89 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #171718;
+}
+
+header {
+    background: #0e0e0f;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: #fff;
+}
+
+.auth-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.auth-buttons button {
+    padding: 5px 10px;
+    background-color: #3d95ec;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.add-bot-button {
+    padding: 20px 40px;
+    font-size: 24px;
+    color: white;
+    background-color: #3d95ec;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.add-bot-button:hover {
+    background-color: #3d95ec;
+}
+
+section {
+    padding: 20px;
+    background: #0e0e0f;
+    color: white;
+    margin: 20px;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #252525;
+    color: #fff;
+}
+.manual1 {
+    background-color: #171718;
+    color: #171718;
+}
+.manual2 {
+    background-color: #171718;
+    color: #171718;
+}
